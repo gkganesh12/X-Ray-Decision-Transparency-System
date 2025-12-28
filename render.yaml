@@ -6,7 +6,7 @@ services:
     plan: free
     region: oregon
     rootDir: .
-    buildCommand: npm ci && npm run build:sdk && npm run build:server
+    buildCommand: npm ci && npm run build:sdk && (test -f packages/sdk/dist/index.d.ts && test -f node_modules/@xray/sdk/package.json) && npm run build:server
     startCommand: npm start --prefix packages/server
     envVars:
       - key: NODE_VERSION

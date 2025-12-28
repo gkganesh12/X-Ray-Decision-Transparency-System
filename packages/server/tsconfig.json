@@ -10,7 +10,11 @@
     "skipLibCheck": true,
     "outDir": "dist",
     "resolveJsonModule": true,
-    "composite": false
+    "composite": false,
+    "baseUrl": ".",
+    "paths": {
+      "@xray/sdk": ["../sdk/dist/index", "../../node_modules/@xray/sdk"]
+    }
   },
   "include": ["src"]
 }
