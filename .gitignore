@@ -52,6 +52,18 @@ VIDEO_WALKTHROUGH_SCRIPT.md
 PROJECT_STATUS.md
 Docs/
 
+# Exclude other documentation files (keep only README.md, ARCHITECTURE.md, and packages/server/API.md)
+CONTRIBUTING.md
+ENHANCEMENT_ROADMAP.md
+MAXIMIZING_XRAY.md
+PRODUCTION_ASSESSMENT.md
+PRODUCTION_CHECKLIST.md
+QUICK_WINS.md
+SETUP.md
+Software_Spec.md
+ganesh.md
+packages/sdk/README.md
+
 # Exclude submission-specific documentation
 SUBMISSION_GUIDE.md
 DEPLOYMENT.md
