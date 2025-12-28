@@ -509,6 +509,7 @@ Then view the executions in the dashboard at http://localhost:5173.
 - **[README.md](./README.md)** - This file
 - **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Detailed architecture documentation
 - **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Contribution guidelines
+- **[VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)** - Complete Vercel deployment guide
 - **[packages/server/API.md](./packages/server/API.md)** - Complete API reference
 
 ---
