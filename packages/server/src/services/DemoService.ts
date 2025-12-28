@@ -3,7 +3,7 @@
  * Runs demo workflows to generate sample execution data
  */
 import type { EventStore } from "@xray/sdk";
-import { XRaySession } from "@xray/sdk";
+import { XRaySession, XRayStepBuilder } from "@xray/sdk";
 
 // Mock data and functions (simplified versions from demo package)
 interface Product {
@@ -54,7 +54,7 @@ async function generateKeywords(xray: XRaySession, product: Product): Promise<st
   const keywords = mockLLMGenerateKeywords(product.title, product.category || "");
   const reasoning = mockLLMReasoning(product.title);
 
-  await xray.step("keyword_generation", (step) => {
+  await xray.step("keyword_generation", (step: XRayStepBuilder) => {
     step.input({
       product_title: product.title,
       category: product.category || "Unknown",
@@ -70,7 +70,7 @@ async function searchCandidates(xray: XRaySession, keywords: string[], limit: nu
   await new Promise((resolve) => setTimeout(resolve, 200));
   const candidates = mockProducts.slice(0, limit);
 
-  await xray.step("candidate_search", (step) => {
+  await xray.step("candidate_search", (step: XRayStepBuilder) => {
     step.input({ keywords, limit });
     step.output({
       total_results: mockProducts.length,
@@ -105,7 +105,7 @@ async function filterAndRank(xray: XRaySession, candidates: Product[], reference
   });
 
   if (qualified.length === 0) {
-    await xray.step("filter_and_rank", (step) => {
+    await xray.step("filter_and_rank", (step: XRayStepBuilder) => {
       step.input({
         candidates_count: candidates.length,
         reference_product: {
@@ -129,7 +129,7 @@ async function filterAndRank(xray: XRaySession, candidates: Product[], reference
 
   const best = qualified.sort((a, b) => b.reviews - a.reviews)[0];
 
-  await xray.step("filter_and_rank", (step) => {
+  await xray.step("filter_and_rank", (step: XRayStepBuilder) => {
     step.input({
       candidates_count: candidates.length,
       reference_product: {
