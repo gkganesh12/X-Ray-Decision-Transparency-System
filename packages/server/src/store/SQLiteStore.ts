@@ -6,8 +6,10 @@ import { join } from "path";
 import { readFileSync } from "fs";
 import type { EventStore, XRayExecution, XRayStep } from "@xray/sdk";
 
+type DatabaseInstance = InstanceType<typeof Database>;
+
 export class SQLiteStore implements EventStore {
-  private db: Database;
+  private db: DatabaseInstance;
   private schemaPath: string;
 
   constructor(dbPath?: string) {
