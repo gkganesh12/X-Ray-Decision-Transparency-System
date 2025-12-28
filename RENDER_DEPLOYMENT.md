@@ -110,7 +110,7 @@ services:
     env: node
     plan: free
     rootDir: .
-    buildCommand: npm install --include=dev && npm run build:sdk && npm run build:server
+    buildCommand: npm install --include=dev && cd packages/server && npm run build
     startCommand: cd packages/server && npm start
     envVars:
       - key: NODE_ENV
@@ -159,7 +159,7 @@ services:
 - **Branch**: `main`
 - **Root Directory**: `.` (root of repository)
 - **Runtime**: `Node`
-- **Build Command**: `npm install --include=dev && npm run build:sdk && npm run build:server`
+- **Build Command**: `npm install --include=dev && cd packages/server && npm run build`
 - **Start Command**: `cd packages/server && npm start`
 
 **Advanced Settings**:
@@ -437,7 +437,7 @@ curl -X GET https://xray-api.onrender.com/api/executions \
 **Solutions**:
 
 - **Build from root**: Set `rootDir: .` in render.yaml to build from repository root
-- **Build SDK first**: Use `npm run build:sdk && npm run build:server` in build command
+- **Build SDK first**: The server's `prebuild` script automatically builds the SDK first, so just use `cd packages/server && npm run build`
 - **Include devDependencies**: Use `npm install --include=dev` to install TypeScript and type definitions
 - **Verify build order**: SDK must be built before server (monorepo dependency)
 - Check Node.js version matches `engines.node` in `package.json`
@@ -447,8 +447,10 @@ curl -X GET https://xray-api.onrender.com/api/executions \
 **Correct Build Command**:
 
 ```bash
-npm install --include=dev && npm run build:sdk && npm run build:server
+npm install --include=dev && cd packages/server && npm run build
 ```
+
+**Note**: The server's `prebuild` script automatically builds the SDK first, so you only need to build the server.
 
 **Correct Start Command**:
 
