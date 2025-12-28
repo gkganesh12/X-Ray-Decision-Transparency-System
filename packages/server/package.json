@@ -18,7 +18,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@xray/sdk": "*",
+    "@xray/sdk": "workspace:*",
     "bcryptjs": "^2.4.3",
     "better-sqlite3": "^9.2.2",
     "express": "^4.22.1",

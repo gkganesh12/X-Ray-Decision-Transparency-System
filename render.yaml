@@ -6,7 +6,7 @@ services:
     plan: free
     region: oregon
     rootDir: .
-    buildCommand: npm install --include=dev && npm run build --workspace=packages/sdk && test -f packages/sdk/dist/index.d.ts && npm run build --workspace=packages/server
+    buildCommand: npm ci && npm run build:sdk && npm run build:server
     startCommand: npm start --prefix packages/server
     envVars:
       - key: NODE_VERSION
@@ -34,7 +34,7 @@ services:
     name: xray-dashboard
     plan: free
     rootDir: .
-    buildCommand: npm install --include=dev && npm run build --workspace=packages/sdk && npm run build --workspace=packages/dashboard
+    buildCommand: npm ci && npm run build:sdk && npm run build --workspace=packages/dashboard
     staticPublishPath: packages/dashboard/dist
     envVars:
       - key: VITE_API_URL
