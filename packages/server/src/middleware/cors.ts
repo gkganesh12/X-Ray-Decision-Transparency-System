@@ -1,8 +1,8 @@
 /// <reference types="express" />
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 export function corsMiddleware(req: Request, res: Response, next: NextFunction): void {
-  const origin = req.headers.origin;
+  const origin = req.get("origin");
   
   // Support both CORS_ORIGIN and ALLOWED_ORIGINS for flexibility
   const corsEnv = process.env.CORS_ORIGIN || process.env.ALLOWED_ORIGINS;

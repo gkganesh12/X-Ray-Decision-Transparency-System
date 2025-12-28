@@ -1,5 +1,6 @@
 /// <reference types="express" />
-import { Router, Request, Response } from "express";
+import type { Request, Response } from "express";
+import { Router } from "express";
 import type { EventStore } from "@xray/sdk";
 import { logger } from "../utils/logger";
 import { metrics } from "../utils/metrics";

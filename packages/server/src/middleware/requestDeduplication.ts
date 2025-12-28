@@ -3,7 +3,7 @@
  * Request deduplication middleware
  * Prevents duplicate requests within a short time window
  */
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 interface RequestCache {
   response: any;

@@ -2,10 +2,10 @@
 /**
  * Authentication middleware for protecting routes
  */
-import { Response, NextFunction } from "express";
+import type { Response, NextFunction } from "express";
 import { verifyToken, extractTokenFromHeader } from "./jwt";
 import { AppError } from "../errors";
-import { AuthenticatedRequest } from "./types";
+import type { AuthenticatedRequest } from "./types";
 
 /**
  * Middleware to authenticate requests using JWT tokens
@@ -16,7 +16,8 @@ export function authenticate(
   next: NextFunction
 ): void {
   try {
-    const token = extractTokenFromHeader(req.headers.authorization);
+    const authHeader = req.get("authorization");
+    const token = extractTokenFromHeader(authHeader || undefined);
 
     if (!token) {
       throw new AppError("Authentication required", 401, "AUTH_REQUIRED");
@@ -58,7 +59,8 @@ export function optionalAuthenticate(
   next: NextFunction
 ): void {
   try {
-    const token = extractTokenFromHeader(req.headers.authorization);
+    const authHeader = req.get("authorization");
+    const token = extractTokenFromHeader(authHeader || undefined);
     if (token) {
       const payload = verifyToken(token);
       req.user = {
@@ -71,4 +73,3 @@ export function optionalAuthenticate(
   }
   next();
 }
-

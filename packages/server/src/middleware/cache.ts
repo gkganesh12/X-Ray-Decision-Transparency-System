@@ -3,7 +3,7 @@
  * Response caching middleware
  * Simple in-memory cache (for production, use Redis or similar)
  */
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 interface CacheEntry {
   data: any;

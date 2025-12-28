@@ -2,7 +2,7 @@
 /**
  * Async handler wrapper to catch errors in async route handlers
  */
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 export function asyncHandler(
   fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
