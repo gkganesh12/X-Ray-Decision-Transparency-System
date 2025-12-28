@@ -1,0 +1,40 @@
+services:
+  # API Service - Backend REST API
+  - type: web
+    name: xray-api
+    env: node
+    plan: free
+    region: oregon
+    rootDir: .
+    buildCommand: npm install --include=dev && npm run build:sdk && npm run build:server
+    startCommand: cd packages/server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DB_PATH
+        value: /opt/render/project/src/packages/server/data/xray.db
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 24h
+      - key: CORS_ORIGIN
+        sync: false
+    disk:
+      name: xray-db
+      mountPath: /opt/render/project/src/packages/server/data
+      sizeGB: 1
+    healthCheckPath: /api/health
+
+  # Dashboard Service - Frontend React App
+  - type: static
+    name: xray-dashboard
+    plan: free
+    rootDir: packages/dashboard
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+

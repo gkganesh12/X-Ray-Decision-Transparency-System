@@ -9,6 +9,7 @@
     "./store": "./dist/store/SQLiteStore.js"
   },
   "scripts": {
+    "prebuild": "cd ../sdk && npm run build || echo 'SDK build skipped (may already be built)'",
     "build": "tsc && cp src/store/schema.sql dist/store/schema.sql",
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
     "start": "node dist/index.js",
