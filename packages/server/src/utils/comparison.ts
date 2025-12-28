@@ -1,4 +1,4 @@
-import type { Execution, Step } from "@xray/sdk";
+import type { XRayExecution, XRayStep } from "@xray/sdk";
 
 interface StepData {
   input?: unknown;
@@ -33,16 +33,16 @@ export interface SelectionDifference {
 }
 
 export interface ExecutionComparison {
-  execution1: Execution;
-  execution2: Execution;
+  execution1: XRayExecution;
+  execution2: XRayExecution;
   stepDifferences: StepDifference[];
   filterDifferences: FilterDifference[];
   selectionDifferences: SelectionDifference[];
 }
 
 export function compareExecutions(
-  execution1: Execution,
-  execution2: Execution
+  execution1: XRayExecution,
+  execution2: XRayExecution
 ): ExecutionComparison {
   const stepDifferences: StepDifference[] = [];
   const filterDifferences: FilterDifference[] = [];
