@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "dev": "concurrently \"npm run dev --workspace=packages/server\" \"npm run dev --workspace=packages/dashboard\"",
-    "build": "npm run build -w @xray/sdk && npm run build -w @xray/server && npm run build --workspace=packages/demo && npm run build --workspace=packages/dashboard",
+    "build": "npm run build -w @xray/sdk && npm run build -w @xray/server",
+    "build:all": "npm run build -w @xray/sdk && npm run build -w @xray/server && npm run build --workspace=packages/demo && npm run build --workspace=packages/dashboard",
     "build:sdk": "npm run build -w @xray/sdk",
     "build:server": "npm run build -w @xray/server",
     "build:server-only": "npm run build:sdk && npm run build:server",

@@ -6,7 +6,7 @@ services:
     plan: free
     region: oregon
     rootDir: .
-    buildCommand: npm ci && npm run build -w @xray/sdk && npm run build -w @xray/server
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm start --prefix packages/server
     envVars:
       - key: NODE_VERSION
