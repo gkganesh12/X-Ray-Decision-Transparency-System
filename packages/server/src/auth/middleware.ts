@@ -6,10 +6,7 @@ import { verifyToken, extractTokenFromHeader } from "./jwt";
 import { AppError } from "../errors";
 
 export interface AuthenticatedRequest extends Request {
-  user?: {
-    id: string;
-    email: string;
-  };
+  user?: any;
 }
 
 /**
