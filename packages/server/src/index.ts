@@ -2,7 +2,7 @@
  * X-Ray API Server
  * Provides REST API for accessing X-Ray execution data
  */
-import express from "express";
+import express, { Request, Response } from "express";
 import { createServer } from "http";
 import { SQLiteStore } from "./store/SQLiteStore";
 import { createExecutionsRouter } from "./routes/executions";
@@ -36,7 +36,7 @@ app.use(corsMiddleware);
 app.use(requestDeduplication);
 
 // Health check (public)
-app.get("/api/health", (_req, res) => {
+app.get("/api/health", (_req: Request, res: Response) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
@@ -51,7 +51,7 @@ app.use("/api/executions", authenticate, createStepsRouter(store));
 app.use(errorHandler);
 
 // Metrics endpoint (protected)
-app.get("/api/metrics", authenticate, (req, res) => {
+app.get("/api/metrics", authenticate, (req: Request, res: Response) => {
   res.json({
     summary: metrics.getSummary(),
     recent: metrics.getMetrics().slice(-50),

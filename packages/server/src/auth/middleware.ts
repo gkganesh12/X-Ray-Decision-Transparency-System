@@ -7,8 +7,8 @@ import { AppError } from "../errors";
 
 export interface AuthenticatedRequest extends Request {
   user?: {
-    userId: string;
-    username: string;
+    id: string;
+    email: string;
   };
 }
 
@@ -29,8 +29,8 @@ export function authenticate(
 
     const payload = verifyToken(token);
     req.user = {
-      userId: payload.userId,
-      username: payload.username,
+      id: payload.userId,
+      email: payload.username,
     };
 
     next();
@@ -67,8 +67,8 @@ export function optionalAuthenticate(
     if (token) {
       const payload = verifyToken(token);
       req.user = {
-        userId: payload.userId,
-        username: payload.username,
+        id: payload.userId,
+        email: payload.username,
       };
     }
   } catch {
