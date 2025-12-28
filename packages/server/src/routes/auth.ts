@@ -2,7 +2,7 @@
  * Authentication routes
  */
 import { Router, Request, Response } from "express";
-import { generateToken } from "../auth/jwt";
+import { signToken } from "../auth/jwt";
 import { findUserByUsername, verifyPassword } from "../models/User";
 import { ValidationError } from "../errors";
 import { asyncHandler } from "../middleware/asyncHandler";
@@ -53,7 +53,7 @@ export function createAuthRouter(): Router {
       return;
     }
 
-    const token = generateToken({
+    const token = signToken({
       userId: user.id,
       username: user.username,
     });

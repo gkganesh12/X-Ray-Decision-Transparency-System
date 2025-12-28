@@ -1,29 +1,16 @@
-/**
- * JWT token generation and validation
- */
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
-
-const signOptions: jwt.SignOptions = {
-  expiresIn: "7d",
-};
 
 export interface JWTPayload {
   userId: string;
   username: string;
 }
 
-/**
- * Generate a JWT token for a user
- */
-export function generateToken(payload: JWTPayload): string {
-  return jwt.sign(payload, JWT_SECRET, signOptions);
+export function signToken(payload: object) {
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
 }
 
-/**
- * Verify and decode a JWT token
- */
 export function verifyToken(token: string): JWTPayload {
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload;
@@ -39,9 +26,6 @@ export function verifyToken(token: string): JWTPayload {
   }
 }
 
-/**
- * Extract token from Authorization header
- */
 export function extractTokenFromHeader(authHeader: string | undefined): string | null {
   if (!authHeader) {
     return null;
