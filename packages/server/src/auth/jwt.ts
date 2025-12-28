@@ -3,10 +3,11 @@
  */
 import jwt, { SignOptions } from "jsonwebtoken";
 
-const JWT_SECRET = (process.env.JWT_SECRET || "xray-secret-key-change-in-production") as jwt.Secret;
+const JWT_SECRET = process.env.JWT_SECRET as jwt.Secret;
 
-// Explicitly normalize expires value
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN ?? "1h";
+const signOptions: SignOptions = {
+  expiresIn: "7d",
+};
 
 export interface JWTPayload {
   userId: string;
@@ -17,11 +18,7 @@ export interface JWTPayload {
  * Generate a JWT token for a user
  */
 export function generateToken(payload: JWTPayload): string {
-  const options: SignOptions = {
-    expiresIn: JWT_EXPIRES_IN as jwt.SignOptions["expiresIn"],
-  };
-
-  return jwt.sign(payload, JWT_SECRET, options);
+  return jwt.sign(payload, JWT_SECRET, signOptions);
 }
 
 /**
@@ -57,4 +54,3 @@ export function extractTokenFromHeader(authHeader: string | undefined): string |
 
   return parts[1];
 }
-

@@ -1,13 +1,10 @@
 /**
  * Authentication middleware for protecting routes
  */
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import { verifyToken, extractTokenFromHeader } from "./jwt";
 import { AppError } from "../errors";
-
-export interface AuthenticatedRequest extends Request {
-  user?: any;
-}
+import { AuthenticatedRequest } from "./types";
 
 /**
  * Middleware to authenticate requests using JWT tokens
