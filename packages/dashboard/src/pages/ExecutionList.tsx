@@ -33,7 +33,8 @@ export function ExecutionList() {
   const [showShortcutsModal, setShowShortcutsModal] = useState(false);
   const { lastMessage, isConnected, isReconnecting } = useExecutionContext();
   const isOffline = useOffline();
-  const { warning } = useToastContext();
+  const { warning, success, error: showError } = useToastContext();
+  const [isRunningDemo, setIsRunningDemo] = useState(false);
 
   // Show offline warning
   useEffect(() => {
@@ -263,9 +264,22 @@ export function ExecutionList() {
             title="No Executions Found"
             message="Run the demo app to generate execution data or adjust your filter criteria."
             action={{
-              label: "Run Demo",
-              onClick: () => {
-                window.open("https://github.com/your-repo#running-the-demo", "_blank");
+              label: isRunningDemo ? "Running Demo..." : "Run Demo",
+              onClick: async () => {
+                if (isRunningDemo) return;
+                setIsRunningDemo(true);
+                try {
+                  const result = await api.runDemo(3);
+                  success(result.message || `Successfully generated ${result.executionIds.length} demo execution(s)`);
+                  // Refetch executions after a short delay to allow them to be saved
+                  setTimeout(() => {
+                    refetch();
+                  }, 1000);
+                } catch (err) {
+                  showError(err instanceof Error ? err.message : "Failed to run demo. Please try again.");
+                } finally {
+                  setIsRunningDemo(false);
+                }
               },
             }}
           />

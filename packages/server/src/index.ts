@@ -10,6 +10,7 @@ import { SQLiteStore } from "./store/SQLiteStore";
 import { createExecutionsRouter } from "./routes/executions";
 import { createStepsRouter } from "./routes/steps";
 import { createAuthRouter } from "./routes/auth";
+import { createDemoRouter } from "./routes/demo";
 import { authenticate } from "./auth/middleware";
 import { requestDeduplication } from "./middleware/requestDeduplication";
 import { corsMiddleware } from "./middleware/cors";
@@ -48,6 +49,7 @@ app.use("/api/auth", createAuthRouter());
 // Protected routes (require authentication)
 app.use("/api/executions", authenticate, createExecutionsRouter(store, executionSocket));
 app.use("/api/executions", authenticate, createStepsRouter(store));
+app.use("/api/demo", authenticate, createDemoRouter(store));
 
 // Error handling
 app.use(errorHandler);

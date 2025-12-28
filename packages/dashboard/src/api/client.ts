@@ -2,7 +2,8 @@ import axios from "axios";
 import type { XRayExecution, XRayStep } from "@xray/sdk";
 import { retry } from "./retry";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+// Remove trailing slash to prevent double slashes when axios appends paths
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:3001").replace(/\/$/, "");
 const REQUEST_TIMEOUT = 30000; // 30 seconds
 
 const client = axios.create({
@@ -119,6 +120,16 @@ export const api = {
       const response = await client.delete<{ deleted: number; ids: string[] }>("/api/executions", {
         data: { ids },
       });
+      return response.data;
+    });
+  },
+
+  async runDemo(count: number = 3): Promise<{ success: boolean; executionIds: string[]; message: string }> {
+    return apiCall(async () => {
+      const response = await client.post<{ success: boolean; executionIds: string[]; message: string }>(
+        "/api/demo/run",
+        { count }
+      );
       return response.data;
     });
   },

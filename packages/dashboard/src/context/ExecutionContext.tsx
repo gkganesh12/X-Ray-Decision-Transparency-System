@@ -5,7 +5,8 @@ import { createContext, useContext, ReactNode } from "react";
 import { useWebSocket } from "../hooks/useWebSocket";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
-const WS_URL = API_BASE_URL.replace(/^http/, "ws") + "/ws";
+// Remove trailing slash and convert http to ws
+const WS_URL = API_BASE_URL.replace(/\/$/, "").replace(/^http/, "ws") + "/ws";
 
 interface ExecutionContextValue {
   isConnected: boolean;
