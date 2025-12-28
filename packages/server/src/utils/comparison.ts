@@ -1,8 +1,15 @@
-/**
- * Execution comparison utility
- * Moved from dashboard to server for use in services
- */
-import type { XRayExecution } from "@xray/sdk";
+import type { Execution, Step } from "@xray/sdk";
+
+interface StepData {
+  input?: unknown;
+  output?: unknown;
+  filters?: unknown;
+  selection?: unknown;
+}
+
+export function compareSteps(steps: StepData[]): string[] {
+  return steps.map((s) => JSON.stringify(s));
+}
 
 export interface StepDifference {
   stepName: string;
@@ -26,24 +33,27 @@ export interface SelectionDifference {
 }
 
 export interface ExecutionComparison {
-  execution1: XRayExecution;
-  execution2: XRayExecution;
+  execution1: Execution;
+  execution2: Execution;
   stepDifferences: StepDifference[];
   filterDifferences: FilterDifference[];
   selectionDifferences: SelectionDifference[];
 }
 
 export function compareExecutions(
-  execution1: XRayExecution,
-  execution2: XRayExecution
+  execution1: Execution,
+  execution2: Execution
 ): ExecutionComparison {
   const stepDifferences: StepDifference[] = [];
   const filterDifferences: FilterDifference[] = [];
   const selectionDifferences: SelectionDifference[] = [];
 
+  const steps1 = (execution1 as any).steps || [];
+  const steps2 = (execution2 as any).steps || [];
+
   // Compare steps by name
-  const stepMap1 = new Map(execution1.steps.map((s) => [s.name, s]));
-  const stepMap2 = new Map(execution2.steps.map((s) => [s.name, s]));
+  const stepMap1 = new Map(steps1.map((s: any) => [s.name, s]));
+  const stepMap2 = new Map(steps2.map((s: any) => [s.name, s]));
 
   const allStepNames = new Set([
     ...stepMap1.keys(),
@@ -55,10 +65,9 @@ export function compareExecutions(
     const step2 = stepMap2.get(stepName);
 
     if (!step1 || !step2) {
-      continue; // Step exists in one but not the other
+      continue;
     }
 
-    // Compare step fields
     const differences: Array<{ field: string; left: any; right: any }> = [];
 
     if (JSON.stringify(step1.input) !== JSON.stringify(step2.input)) {
@@ -81,7 +90,6 @@ export function compareExecutions(
       stepDifferences.push({ stepName, differences });
     }
 
-    // Compare filters
     if (
       JSON.stringify(step1.filters || {}) !==
       JSON.stringify(step2.filters || {})
@@ -93,7 +101,6 @@ export function compareExecutions(
       });
     }
 
-    // Compare selections
     if (
       JSON.stringify(step1.selection || {}) !==
       JSON.stringify(step2.selection || {})
@@ -114,4 +121,3 @@ export function compareExecutions(
     selectionDifferences,
   };
 }
-
