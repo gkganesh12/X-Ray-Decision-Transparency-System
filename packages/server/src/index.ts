@@ -3,8 +3,7 @@
  * X-Ray API Server
  * Provides REST API for accessing X-Ray execution data
  */
-import express from "express";
-import type { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { createServer } from "http";
 import { SQLiteStore } from "./store/SQLiteStore";
 import { createExecutionsRouter } from "./routes/executions";

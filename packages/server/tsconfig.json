@@ -5,11 +5,9 @@
     "moduleResolution": "node",
     "lib": ["ES2021"],
     "types": ["node", "express"],
-    "typeRoots": ["./node_modules/@types"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "rootDir": "src",
     "outDir": "dist"
   },
   "include": ["src"]

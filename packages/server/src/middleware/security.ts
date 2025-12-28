@@ -2,7 +2,7 @@
 /**
  * Security middleware for setting security headers
  */
-import type { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 
 export function securityHeaders(
   req: Request,

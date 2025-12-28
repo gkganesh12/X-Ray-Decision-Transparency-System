@@ -1,5 +1,5 @@
 /// <reference types="express" />
-import type { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import { NotFoundError } from "../errors/NotFoundError";
 import { logger } from "../utils/logger";
 import { metrics } from "../utils/metrics";

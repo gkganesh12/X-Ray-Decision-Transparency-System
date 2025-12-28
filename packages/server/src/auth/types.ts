@@ -1,5 +1,8 @@
-import type { Request } from "express";
+import { Request } from "express";
 
 export interface AuthenticatedRequest extends Request {
-  user?: any;
+  user?: {
+    id: string;
+    role?: string;
+  };
 }

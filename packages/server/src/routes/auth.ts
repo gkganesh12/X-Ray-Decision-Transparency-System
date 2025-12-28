@@ -2,8 +2,7 @@
 /**
  * Authentication routes
  */
-import type { Request, Response } from "express";
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import { signToken } from "../auth/jwt";
 import { findUserByUsername, verifyPassword } from "../models/User";
 import { ValidationError } from "../errors";
