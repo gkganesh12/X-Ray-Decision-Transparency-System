@@ -13,8 +13,15 @@
     "composite": false,
     "baseUrl": ".",
     "paths": {
-      "@xray/sdk": ["../sdk/dist"]
+      "@xray/sdk": [
+        "../sdk/dist/index",
+        "../sdk/src/index",
+        "../../node_modules/@xray/sdk/dist/index"
+      ]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "references": [
+    { "path": "../sdk" }
+  ]
 }
