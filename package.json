@@ -11,6 +11,7 @@
     "build": "npm run build --workspace=packages/sdk && npm run build --workspace=packages/server && npm run build --workspace=packages/demo && npm run build --workspace=packages/dashboard",
     "build:sdk": "npm run build --workspace=packages/sdk",
     "build:server": "npm run build --workspace=packages/server",
+    "build:server-only": "npm run build --workspace=packages/sdk && npm run build --workspace=packages/server",
     "build:demo": "npm run build --workspace=packages/demo",
     "build:dashboard": "npm run build --workspace=packages/dashboard",
     "demo": "npm run start --workspace=packages/demo",
