@@ -1,15 +1,18 @@
 #!/bin/bash
 set -e
 
+# Get the script directory and project root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+echo "Project root: $PROJECT_ROOT"
 echo "Building SDK..."
-cd packages/sdk
+cd "$PROJECT_ROOT/packages/sdk"
 npm run build
-cd ../..
 
 echo "Building Server..."
-cd packages/server
+cd "$PROJECT_ROOT/packages/server"
 npm run build
-cd ../..
 
 echo "Build complete!"
 
