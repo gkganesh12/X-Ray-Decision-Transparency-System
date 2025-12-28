@@ -1,3 +1,4 @@
+/// <reference types="express" />
 /**
  * Security middleware for setting security headers
  */

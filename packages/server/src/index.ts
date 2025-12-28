@@ -1,3 +1,4 @@
+/// <reference types="express" />
 /**
  * X-Ray API Server
  * Provides REST API for accessing X-Ray execution data

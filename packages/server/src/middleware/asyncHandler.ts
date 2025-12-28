@@ -1,3 +1,4 @@
+/// <reference types="express" />
 /**
  * Async handler wrapper to catch errors in async route handlers
  */

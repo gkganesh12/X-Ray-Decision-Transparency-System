@@ -1,11 +1,17 @@
+/// <reference types="express" />
 import { Request, Response, NextFunction } from "express";
 
 export function corsMiddleware(req: Request, res: Response, next: NextFunction): void {
   const origin = req.headers.origin;
   
+  // Support both CORS_ORIGIN and ALLOWED_ORIGINS for flexibility
+  const corsEnv = process.env.CORS_ORIGIN || process.env.ALLOWED_ORIGINS;
+  
   // In production, replace "*" with specific allowed origins
-  const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(",")
+  const allowedOrigins = corsEnv
+    ? corsEnv.split(",").map((o) => o.trim())
+    : process.env.NODE_ENV === "production"
+    ? []
     : ["*"];
 
   if (allowedOrigins.includes("*") || (origin && allowedOrigins.includes(origin))) {

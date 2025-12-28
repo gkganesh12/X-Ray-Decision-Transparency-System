@@ -1,3 +1,4 @@
+/// <reference types="express" />
 /**
  * Validation middleware for request validation
  */

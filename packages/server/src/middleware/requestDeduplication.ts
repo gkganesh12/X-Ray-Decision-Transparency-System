@@ -1,3 +1,4 @@
+/// <reference types="express" />
 /**
  * Request deduplication middleware
  * Prevents duplicate requests within a short time window

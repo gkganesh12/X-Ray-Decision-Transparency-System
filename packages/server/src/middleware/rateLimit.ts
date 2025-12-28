@@ -1,3 +1,4 @@
+/// <reference types="express" />
 /**
  * Rate limiting middleware
  * Simple in-memory rate limiter (for production, use Redis or similar)

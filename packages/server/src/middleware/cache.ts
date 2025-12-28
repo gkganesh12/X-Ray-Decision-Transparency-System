@@ -1,3 +1,4 @@
+/// <reference types="express" />
 /**
  * Response caching middleware
  * Simple in-memory cache (for production, use Redis or similar)

@@ -1,3 +1,4 @@
+/// <reference types="express" />
 /**
  * Authentication routes
  */
