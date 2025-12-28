@@ -13,7 +13,7 @@
     "composite": false,
     "baseUrl": ".",
     "paths": {
-      "@xray/sdk": ["../sdk/dist/index", "../../node_modules/@xray/sdk"]
+      "@xray/sdk": ["../sdk/dist"]
     }
   },
   "include": ["src"]
