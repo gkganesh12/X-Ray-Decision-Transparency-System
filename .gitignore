@@ -52,8 +52,7 @@ VIDEO_WALKTHROUGH_SCRIPT.md
 PROJECT_STATUS.md
 Docs/
 
-# Exclude other documentation files (keep only README.md, ARCHITECTURE.md, and packages/server/API.md)
-CONTRIBUTING.md
+# Exclude other documentation files (keep only README.md, ARCHITECTURE.md, CONTRIBUTING.md, and packages/server/API.md)
 ENHANCEMENT_ROADMAP.md
 MAXIMIZING_XRAY.md
 PRODUCTION_ASSESSMENT.md
