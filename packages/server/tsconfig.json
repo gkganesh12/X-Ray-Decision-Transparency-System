@@ -4,12 +4,11 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "lib": ["ES2021"],
-    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src", "src/types"]
+  "include": ["src"]
 }
