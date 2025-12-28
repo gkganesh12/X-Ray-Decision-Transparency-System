@@ -15,13 +15,9 @@
     "paths": {
       "@xray/sdk": [
         "../sdk/dist/index",
-        "../sdk/src/index",
         "../../node_modules/@xray/sdk/dist/index"
       ]
     }
   },
-  "include": ["src"],
-  "references": [
-    { "path": "../sdk" }
-  ]
+  "include": ["src"]
 }
