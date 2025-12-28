@@ -4,6 +4,8 @@ import { AppError } from "./AppError";
  * Error for database operations (500)
  */
 export class DatabaseError extends AppError {
+  public cause?: Error;
+
   constructor(message: string, originalError?: Error) {
     super(
       `Database error: ${message}`,

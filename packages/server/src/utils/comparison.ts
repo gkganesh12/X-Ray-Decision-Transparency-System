@@ -48,12 +48,12 @@ export function compareExecutions(
   const filterDifferences: FilterDifference[] = [];
   const selectionDifferences: SelectionDifference[] = [];
 
-  const steps1 = (execution1 as any).steps || [];
-  const steps2 = (execution2 as any).steps || [];
+  const steps1: any[] = (execution1 as any).steps || [];
+  const steps2: any[] = (execution2 as any).steps || [];
 
   // Compare steps by name
-  const stepMap1 = new Map(steps1.map((s: any) => [s.name, s]));
-  const stepMap2 = new Map(steps2.map((s: any) => [s.name, s]));
+  const stepMap1 = new Map<string, any>(steps1.map((s: any) => [s.name, s]));
+  const stepMap2 = new Map<string, any>(steps2.map((s: any) => [s.name, s]));
 
   const allStepNames = new Set([
     ...stepMap1.keys(),

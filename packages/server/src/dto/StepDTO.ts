@@ -39,7 +39,7 @@ export function toStepDTO(step: XRayStep): StepDTO {
     input: step.input,
     output: step.output,
     filters: step.filters,
-    evaluations: step.evaluations?.map((evaluation) => ({
+    evaluations: step.evaluations?.map((evaluation: any) => ({
       id: evaluation.id,
       label: evaluation.label,
       metrics: evaluation.metrics,

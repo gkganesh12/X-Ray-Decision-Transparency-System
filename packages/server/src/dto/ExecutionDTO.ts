@@ -53,7 +53,7 @@ export function toExecutionDTO(execution: XRayExecution): ExecutionDTO {
     notes: execution.notes,
     duration,
     status: execution.completedAt ? "completed" : "in_progress",
-    steps: execution.steps.map((step) => ({
+    steps: execution.steps.map((step: any) => ({
       id: step.id,
       name: step.name,
       createdAt: step.createdAt,

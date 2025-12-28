@@ -152,21 +152,21 @@ export class ExecutionRepository {
     try {
       const allExecutions = await this.store.listExecutions(1000, 0);
       
-      const completed = allExecutions.filter((e) => e.completedAt).length;
+      const completed = allExecutions.filter((e: any) => e.completedAt).length;
       const inProgress = allExecutions.length - completed;
       
-      const completedExecutions = allExecutions.filter((e) => e.completedAt);
+      const completedExecutions = allExecutions.filter((e: any) => e.completedAt);
       const averageDuration =
         completedExecutions.length > 0
           ? completedExecutions.reduce(
-              (sum, e) => sum + ((e.completedAt || 0) - e.startedAt),
+              (sum: number, e: any) => sum + ((e.completedAt || 0) - e.startedAt),
               0
             ) / completedExecutions.length
           : 0;
 
       const averageSteps =
         allExecutions.length > 0
-          ? allExecutions.reduce((sum, e) => sum + e.steps.length, 0) /
+          ? allExecutions.reduce((sum: number, e: any) => sum + e.steps.length, 0) /
             allExecutions.length
           : 0;
 
@@ -229,7 +229,7 @@ export class ExecutionRepository {
         (e) =>
           e.name.toLowerCase().includes(searchLower) ||
           e.id.toLowerCase().includes(searchLower) ||
-          e.steps.some((s) => s.name.toLowerCase().includes(searchLower))
+          e.steps.some((s: any) => s.name.toLowerCase().includes(searchLower))
       );
     }
 
