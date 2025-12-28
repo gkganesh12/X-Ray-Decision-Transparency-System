@@ -1,11 +1,11 @@
 /**
  * JWT token generation and validation
  */
-import jwt, { SignOptions } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET as jwt.Secret;
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
-const signOptions: SignOptions = {
+const signOptions: jwt.SignOptions = {
   expiresIn: "7d",
 };
 

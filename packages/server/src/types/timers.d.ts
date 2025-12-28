@@ -5,8 +5,7 @@ declare global {
     handler: (...args: any[]) => void,
     timeout?: number,
     ...args: any[]
-  ): number;
+  ): NodeJS.Timeout;
 
-  function clearInterval(id?: number): void;
+  function clearInterval(id: NodeJS.Timeout): void;
 }
-

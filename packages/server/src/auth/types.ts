@@ -1,6 +1,5 @@
 import { Request } from "express";
 
-export interface AuthenticatedRequest extends Request {
-  user?: any;
-}
+// Request.user is now available via express-fix.d.ts
+export type AuthenticatedRequest = Request;
 
