@@ -2,7 +2,7 @@
 /**
  * Authentication middleware for protecting routes
  */
-import { Response, NextFunction } from "express";
+import type { Response, NextFunction } from "express";
 import { verifyToken, extractTokenFromHeader } from "./jwt";
 import { AppError } from "../errors";
 import { AuthenticatedRequest } from "./types";

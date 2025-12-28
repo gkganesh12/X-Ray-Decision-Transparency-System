@@ -2,7 +2,8 @@
 /**
  * Authentication routes
  */
-import { Router, Request, Response } from "express";
+import type { Router, Request, Response } from "express";
+import { Router as ExpressRouter } from "express";
 import { signToken } from "../auth/jwt";
 import { findUserByUsername, verifyPassword } from "../models/User";
 import { ValidationError } from "../errors";
@@ -10,8 +11,8 @@ import { asyncHandler } from "../middleware/asyncHandler";
 import { logger } from "../utils/logger";
 import { metrics } from "../utils/metrics";
 
-export function createAuthRouter(): Router {
-  const router = Router();
+export function createAuthRouter(): ExpressRouter {
+  const router = ExpressRouter();
 
   /**
    * POST /api/auth/login

@@ -1,5 +1,6 @@
 /// <reference types="express" />
-import { Router, Request, Response } from "express";
+import type { Router, Request, Response } from "express";
+import { Router as ExpressRouter } from "express";
 import type { EventStore } from "@xray/sdk";
 import { logger } from "../utils/logger";
 import { metrics } from "../utils/metrics";
@@ -17,8 +18,8 @@ import type { ExecutionSocket } from "../websocket/ExecutionSocket";
 export function createExecutionsRouter(
   store: EventStore,
   executionSocket?: ExecutionSocket | null
-): Router {
-  const router = Router();
+): ExpressRouter {
+  const router = ExpressRouter();
   
   // Initialize services
   const executionRepository = new ExecutionRepository(store);

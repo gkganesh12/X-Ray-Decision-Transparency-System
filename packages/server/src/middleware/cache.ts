@@ -3,7 +3,7 @@
  * Response caching middleware
  * Simple in-memory cache (for production, use Redis or similar)
  */
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 interface CacheEntry {
   data: any;
@@ -45,7 +45,7 @@ export function cacheMiddleware(ttl: number = 60 * 1000) {
       res.setHeader("X-Cache", "MISS");
       return originalJson.call(this, data);
     };
-    (res as any).json = jsonOverride;
+    res.json = jsonOverride as typeof res.json;
 
     next();
   };

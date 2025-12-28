@@ -1,5 +1,6 @@
 /// <reference types="express" />
-import { Router, Request, Response } from "express";
+import type { Router, Request, Response } from "express";
+import { Router as ExpressRouter } from "express";
 import type { EventStore } from "@xray/sdk";
 import { StepRepository } from "../repositories";
 import { ExecutionRepository } from "../repositories";
@@ -8,8 +9,8 @@ import { toStepListDTO } from "../dto";
 import { asyncHandler } from "../middleware/asyncHandler";
 import { NotFoundError } from "../errors";
 
-export function createStepsRouter(store: EventStore): Router {
-  const router = Router();
+export function createStepsRouter(store: EventStore): ExpressRouter {
+  const router = ExpressRouter();
 
   // Initialize services
   const stepRepository = new StepRepository(store);

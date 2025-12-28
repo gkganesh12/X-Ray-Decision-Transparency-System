@@ -1,5 +1,5 @@
 /// <reference types="express" />
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 export function corsMiddleware(req: Request, res: Response, next: NextFunction): void {
   const origin = req.header("origin");

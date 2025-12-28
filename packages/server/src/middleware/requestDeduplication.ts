@@ -3,7 +3,7 @@
  * Request deduplication middleware
  * Prevents duplicate requests within a short time window
  */
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 interface RequestCache {
   response: any;
@@ -39,13 +39,13 @@ export function requestDeduplication(
 
   // Override res.json to cache the response
   const originalJson = res.json.bind(res);
-  (res as any).json = function (data: any) {
+  res.json = function (data: any) {
     cache.set(cacheKey, {
       response: data,
       timestamp: Date.now(),
     });
     return originalJson(data);
-  };
+  } as typeof res.json;
 
   next();
 }

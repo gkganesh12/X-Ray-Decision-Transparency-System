@@ -509,7 +509,10 @@ Then view the executions in the dashboard at http://localhost:5173.
 - **[README.md](./README.md)** - This file
 - **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Detailed architecture documentation
 - **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Contribution guidelines
-- **[VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)** - Complete Vercel deployment guide
+- **[ENVIRONMENT_VARIABLES.md](./ENVIRONMENT_VARIABLES.md)** - Complete environment variables reference
+- **[RENDER_DEPLOYMENT.md](./RENDER_DEPLOYMENT.md)** - Complete Render deployment guide (full-stack)
+- **[RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md)** - Complete Railway deployment guide
+- **[VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)** - Vercel deployment guide (alternative)
 - **[packages/server/API.md](./packages/server/API.md)** - Complete API reference
 
 ---
