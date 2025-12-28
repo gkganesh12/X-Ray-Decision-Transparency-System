@@ -7,8 +7,10 @@ services:
     region: oregon
     rootDir: .
     buildCommand: npm install --include=dev && npm run build --prefix packages/sdk && npm run build --prefix packages/server
-    startCommand: cd packages/server && npm start
+    startCommand: npm start --prefix packages/server
     envVars:
+      - key: NODE_VERSION
+        value: 20
       - key: NODE_ENV
         value: production
       - key: PORT
