@@ -6,7 +6,7 @@ services:
     plan: free
     region: oregon
     rootDir: .
-    buildCommand: npm install --include=dev && npm run build:server-only
+    buildCommand: npm install --include=dev && cd packages/sdk && npm run build && cd ../.. && npm run build --workspace=packages/server
     startCommand: npm start --prefix packages/server
     envVars:
       - key: NODE_VERSION
