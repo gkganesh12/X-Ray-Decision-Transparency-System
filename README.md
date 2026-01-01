@@ -17,6 +17,7 @@
 ## 🎯 What is X-Ray?
 
 X-Ray provides **decision-level transparency** by capturing the **"why"** behind system decisions, not just the **"what"**. Unlike traditional logging or tracing that shows you which functions were called and how long they took, X-Ray captures the *reasoning* behind every decision.
+## Deployed : https://x-ray-decision-transparency-system-1.onrender.com/
 
 ### The Problem
 
